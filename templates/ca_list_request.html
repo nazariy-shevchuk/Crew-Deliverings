@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block card %}
+<form method="post" action="/ca_list_processing">
+    <div class="row">
+{% include 'filters.html' %}
+        <div>
+            <h3>Crew members</h3>
+{% for row in rows %}
+            <div>
+                <a href="/ca_form?id={{ row[0] }}">{{ row[0] }}{{ ". " +row[1] + ", " + row[2] }}</a>
+            </div>
+            {% endfor %}
+            {% include 'new_id.html' %}
+        </div>
+    </div>
+</form>
+{% endblock %}

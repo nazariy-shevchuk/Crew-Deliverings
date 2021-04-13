@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block card %}
+<form method="post" action="/ta_form_processing">
+    <h3>Transportation task<input style="width: 6ex" type="text" readonly name="id" value="{{ flight }} " ></h3>
+{% for row in rows %}
+    <div>
+        <input type="text" name="time{{ row[0] }}" value="{{ row[1][0:5] }}">
+        {% if row[3] == None %}
+        <button type="submit" class="btn btn-primary btn-sm" name="button{{ row[0] }}">Save</button>
+        {% endif %}
+        {% row[2] %}
+    </div>
+{% endfor %}
+    <div>
+        <button type="submit" name="exit" class="btn btn-secondary">Exit</button>
+        {% if rows|length > 0 %}
+        <button type="submit" name="approve" class="btn btn-primary">Approve</button>
+        {% endif %}
+    </div>
+</form>
+{% endblock %}

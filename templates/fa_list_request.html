@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>Flights list</title>
+    </head>
+    <body>
+        <form method="post" action="/fa_list_processing">
+            Enter departure time from: <input type="text" name="dep_from" value="{{ f_dep_from }}">
+            or departure time to: <input type="text" name="dep_to" value="{{ f_dep_to }}"><br>
+            or arrival time from: <input type="text" name="arr_from" value="{{ f_arr_from }}"><br>
+            or arrival time to: <input type="text" name="arr_to" value="{{ f_arr_to }}"><br>
+            or part of flight description: <input type="text" name="description" value="{{ f_description }}"><br>
+            Press the button: <button type="submit">Submit</button>
+            To return tp the menu press the button <button type="submit" name="exit" >Exit</button>
+        {% for row in rows %}
+            <br>{{ row[0] }}.<a href="/fa_form?id={{ row[0] }}">{{ row[1] + ", " + row[2][0:5] + "-" + row[3][0:5] }}</a>
+        {% endfor %}
+        </form>
+    </body>
+</html>

@@ -1,0 +1,14 @@
+<div class="col-sm-4">
+    <div>
+        <h3>Filter parameters</h3>
+    {% for filter in filters %}
+        <input type="text" name="{{ filter[0] }}" value="{{ filter[2] }}"
+                class="form-control" placeholder="{{ filter[1] }}">
+    {% endfor %}
+    </div>
+    <div>
+        <button type="submit" name="exit" class="btn btn-secondary">Exit</button>
+        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+</div>

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block card %}
+<form method="post" action="/ca_form_processing">
+    <H3>Crew member card<input style="width:100px" type="text" readonly name="id" value="{{ row[0] }}"></H3>
+                    <div>
+                        <label for="input_Description">You can only change name and surname</label>
+                        <input type="text" name="description" class="form-control-sm" value="{{ row[1] }}" id="input_Description">
+                    </div>
+                    <div>
+                        <label for="input_Address">or address</label>
+                        <input type="text" name="address" class="form-control-sm" value="{{ row[2] }}" id="input_Address">
+                    </div>
+                    <div>
+                        <label for="input_Email">or E-mail</label>
+                        <input type="text" name="e,ail" class="form-control-sm" value="{{ row[3] }}" id="input_Email">
+                    </div>
+                    <div>
+                        <label for="input_Phone">or phone number</label>
+                        <input type="text" name="phone" class="form-control-sm" value="{{ row[4] }}" id="input_Phone">
+                    </div>
+                    <div>
+                            <button type="submit" name="exit" class="btn btn-secondary">Exit</button>
+                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" name="dismiss" class="btn btn-danger">Dismiss</button>
+                    </div>
+
+</form>
+{% endblock %}i

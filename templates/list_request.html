@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block list %}
+<form method="post" action="/list_processing">
+    <div class="row">
+{% include 'filters.html' %}
+        <div>
+            <h4>Flights</h4>
+{% for row in rows %}
+            <div>
+                {% if session['role_id'] == 3 %} <a href="/fa_form?id={{ row[0] }}">{{ row[1] }}</a>
+                {% else %} <a href="/ta_form?id={{ row[0] }}">{{ row[1] }}</a>
+                {% endif %}
+            </div>
+{% endfor %}
+{% if session['role_id'] == 3 %}
+    {% include 'new_id.html' %}
+{% endif %}
+        </div>
+    </div>
+</form>
+{% endblock %}

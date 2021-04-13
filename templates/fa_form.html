@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+
+{% block card %}
+<form method="post" action="/fa_form_processing">
+    <h3>Flight card <input style="width: 4em" type="text" readonly name="id" value="{{ row[0] }} " ></h3>
+    <div>
+        <div>
+            <label for="description">Description</label>
+            <input type="text" name="description" class="form-control-sm" value="{{ row[1 ]}}" id="description">
+        </div>
+        <div>
+            <label for="departure">Time</label>&nbsp
+            <input type="text" name="departure_time" class="form-control-sm" value="{{ row[2][0:5] }}" id="departure">
+            <input type="text" name="arrival_time" class="form-control-sm" value="{{ row[3][0:5] }}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="column"><label for="id_assign">Not assigned</label>
+            <div>
+                <select id="id_assign" name="crew_assign" class="form-select" size="15">
+                {% for crewrow in crewrows %}<option value="{{ crewrow[0] }}"> {{crewrow[1] }}</option>{% endfor %}
+                </select>
+            </div>
+            <button style="width: 100%" type="submit" class="btn btn-primary btn-sm" name="assign">Assign >>></button>
+        </div>
+        <div class="column">
+            <label for="id_revoke">Assigned</label>
+            <div>
+                <select id="id_revoke" name="crew_revoke" class="form-select" size="15">
+                    {% for assignment in assignments %} <option value="{{ assignment[0] }}"> {{ assignment[1] }}</option>{% endfor %}
+                </select>
+            </div>
+            <button style="width: 100%" type="submit" class="btn btn-primary btn-sm" name="revoke"><<< Revoke</button>
+        </div>
+        <div>
+            <button type="submit" name="exit" class="btn btn-secondary">Exit</button>
+            <button type="submit" name="save" class="btn btn-primary">Save</button>
+            <button type="submit" name="approve" class="btn btn-primary">Approve</button>
+            <button type="submit" name="delivering" class="btn btn-primary">Create delivering plan </button>
+            <button type="submit" name="delete" class="btn btn-danger">Cancel flight</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
