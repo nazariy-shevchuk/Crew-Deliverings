@@ -109,6 +109,7 @@ def ca_form_processing():
 
 @app.route('/list_request')
 def list_request():
+    print('world')
     return render_template('list_request.html')
 
 
@@ -131,7 +132,7 @@ def list_processing():
               " '" + filters[0][2] + "'," + if_empty_will_be_null(filters[1][2]) + "," + \
               if_empty_will_be_null(filters[2][2]) + "," + if_empty_will_be_null(filters[3][2]) + "," + \
               if_empty_will_be_null(filters[4][2])
-        rows = my_cursor.execute(sql).fetchall()
+    rows = my_cursor.execute(sql).fetchall()
     return render_template('list_request.html', rows=rows, filters=filters)
 
 
@@ -179,7 +180,7 @@ def fa_list_processing():
 
 @app.route('/cm_form', methods=['GET'])
 def cm_form():
-    flash(my_cursor.execute('EXECUTE CM_Delivering' + str(session["employee_id"])).fetchone()[0])
+    flash(my_cursor.execute('EXECUTE CM_Delivering ' + str(session["employee_id"])).fetchone()[0])
     rows = my_cursor.fetchall() if my_cursor.nextset() else []
     transport = my_cursor.fetchall() if my_cursor.nextset() else []
     return render_template('cm_form.html', rows=rows, transportation=transport)
@@ -212,7 +213,7 @@ def ta_form_processing():
     if 'exit' in request.form:
         return render_template('list_request.html', filters=filters)
     if 'approve' in request.form:
-        flash(my_cursor.execute("TA_ApproveTransportationPlan ", + str(flight_id)).fetchone()[0])
+        flash(my_cursor.execute("TA_ApproveTransportationPlan " + str(flight_id)).fetchone()[0])
         my_cursor.commit()
     flash(my_cursor.execute("EXECUTE TA_TripPointsRequest ?", flight_id).fetchall()[0])
     rows = my_cursor.fetchall() if my_cursor.nextset() else []
@@ -223,9 +224,8 @@ def ta_form_processing():
             my_cursor.commit()
             my_cursor.execute("EXECUTE TA_TripPointsRequest ?", flight_id).fetchone()
             rows = my_cursor.fetchall() if my_cursor.nextset() else []
-    return render_template('ta.form.html', flight=flight_id, rows=rows)
+    return render_template('ta_form.html', flight=flight_id, rows=rows)
 
 
 if __name__ == "__main__":
     app.run(debug=True)
-
