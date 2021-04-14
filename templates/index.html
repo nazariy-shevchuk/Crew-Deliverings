@@ -3,15 +3,11 @@
 
 {% block card %}
 <form method="post" action="connection_to_db">
-    <div class="container">
-        <div class="col-sm-4">
+    <div style="width: 40%">
         <h2>Enter your login and password for database connection and airline personnel number.</h2>
         <input type="text" name="log" class="form-control" placeholder="login"><br>
         <input type="password" name="pwd" class="form-control" placeholder="Password"><br>
         <input type="text" name="id" class="form-control" placeholder="Personnel Id"><br>
-        </div>
-    </div>
-    <div class="container">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
     {% endblock %}
