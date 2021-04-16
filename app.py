@@ -109,7 +109,6 @@ def ca_form_processing():
 
 @app.route('/list_request')
 def list_request():
-    print('world')
     return render_template('list_request.html')
 
 
